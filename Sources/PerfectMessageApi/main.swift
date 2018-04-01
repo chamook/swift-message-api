@@ -28,9 +28,6 @@ let confData = [
 			"port":8181,
 			"routes":[
 				["method":"get", "uri":"/", "handler":handler],
-				["method":"get", "uri":"/**", "handler":PerfectHTTPServer.HTTPHandler.staticFiles,
-				 "documentRoot":"./webroot",
-				 "allowResponseFilters":true]
 			],
 			"filters":[
 				[
