@@ -4,31 +4,31 @@ import PerfectLib
 
 let handlers = Handlers()
 let confData = [
-	"servers": [
-		[
-			"name":"localhost",
-			"port":8181,
-			"routes":[
-				["method":"get",
+  "servers": [
+    [
+      "name":"localhost",
+      "port":8181,
+      "routes":[
+        ["method":"get",
          "uri":"/",
          "handler": handlers.listHandler],
-				["method":"get",
+        ["method":"get",
          "uri":"/message/{id}/",
          "handler": handlers.getHandler],
-				["method":"post",
+        ["method":"post",
          "uri":"/message/",
          "handler": handlers.addHandler],
-				["method":"patch",
+        ["method":"patch",
          "uri":"/message/{id}",
          "handler": handlers.patchHandler],
-			]
-		]
-	]
+      ]
+    ]
+  ]
 ]
 
 do {
-	try HTTPServer.launch(configurationData: confData)
+  try HTTPServer.launch(configurationData: confData)
 } catch {
-	fatalError("\(error)")
+  fatalError("\(error)")
 }
 
