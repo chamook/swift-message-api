@@ -1,7 +1,7 @@
 class Messages {
-    private var messages : [Message] = []
+    var messages : [Message] = []
 
-    func addMessage(msg : Message) {
+    func addMessage(_ msg : Message) {
         messages.append(msg)
     }
 
@@ -10,6 +10,6 @@ class Messages {
             return nil
         }
 
-        return messages.first{ $0.msgId == id }
+        return messages.first{ $0.id == id }
     }
 }

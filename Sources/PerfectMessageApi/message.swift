@@ -5,36 +5,45 @@ class Message : JSONConvertibleObject {
 
 	static let registerName = "message"
 
-  var msgId = ""
+  var id = ""
   var title = ""
   var body = ""
 
-  init(msgId u : String, title t : String, body b : String) {
-      self.msgId = u
-      self.title = t
-      self.body = b
+  init(id : String, title : String, body : String) {
+      self.id = id
+      self.title = title
+      self.body = body
   }
 
-  convenience init(title t : String, body b : String) {
-      let id = Foundation.UUID()
-      self.init(msgId: id.uuidString, title: t, body: b)
+  override convenience init() {
+      self.init(id: "", title: "", body: "")
   }
 
 	override public func setJSONValues(_ values: [String : Any]) {
-		  self.msgId =
-        getJSONValue(named: "msgId", from: values, defaultValue: "")
+		  self.id =
+        getJSONValue(named: "id", from: values, defaultValue: self.id)
 		  self.title =
-        getJSONValue(named: "title", from: values, defaultValue: "")
+        getJSONValue(named: "title", from: values, defaultValue: self.title)
 		  self.body =
-        getJSONValue(named: "body", from: values, defaultValue: "")
+        getJSONValue(named: "body", from: values, defaultValue: self.body)
 	}
 
 	override public func getJSONValues() -> [String : Any] {
 		return [
-			"msgId": msgId,
+			"id": id,
 			"title": title,
 			"body": body
 		]
 	}
 
+  convenience init(_ values: [String : Any]) {
+      let id = UUID().uuidString
+      self.init()
+
+      self.id = id
+		  self.title =
+        getJSONValue(named: "title", from: values, defaultValue: self.title)
+		  self.body =
+        getJSONValue(named: "body", from: values, defaultValue: self.body)
+  }
 }
